@@ -1,16 +1,17 @@
 package telran.java57.dao;
 
+import org.springframework.data.mongodb.repository.MongoRepository;
+import org.springframework.data.mongodb.repository.Query;
 import telran.java57.model.Student;
 
-import java.util.Collection;
-import java.util.Optional;
+import java.util.List;
 
-public interface StudentRepository {
-    Student save(Student student);
+public interface StudentRepository extends MongoRepository<Student, Integer> {
 
-    Optional<Student> findById(int id);
+    List<Student> findStudentsByName(String name);
 
-    Collection<Student> findAll();
+    long countStudentsByNameIn(List<String> names);
 
-    void deleteById(int id);
+    @Query("{'scores.?0': {$gte: ?1}}")
+    List<Student> findStudentsByMinScore(String exam, int minScore);
 }

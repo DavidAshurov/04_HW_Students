@@ -1,24 +1,20 @@
 package telran.java57.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.ErrorResponse;
+import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
-import telran.java57.dto.*;
-import telran.java57.dto.exceptions.StudentNotFoundException;
+import telran.java57.dto.NewStudentDto;
+import telran.java57.dto.ScoreDto;
+import telran.java57.dto.StudentDto;
+import telran.java57.dto.StudentUpdateDto;
 import telran.java57.service.StudentService;
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @RestController
+@RequiredArgsConstructor
 public class StudentController {
 
-    @Autowired
-    StudentService studentService;
+    final StudentService studentService;
 
     @PostMapping("/student")
     public boolean addStudent(@RequestBody NewStudentDto newStudentDto) {

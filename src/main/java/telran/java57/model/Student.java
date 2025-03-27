@@ -2,11 +2,13 @@ package telran.java57.model;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.HashMap;
 import java.util.Map;
 
 @Getter
+@Document(collection = "students")
 public class Student {
     int id;
     @Setter
